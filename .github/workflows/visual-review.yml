@@ -1,0 +1,37 @@
+name: Visual regression review
+
+on: [pull_request]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  visual-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Serve Storybook
+        run: npx http-server storybook-static -p 6006 --silent &
+
+      - name: Wait for Storybook
+        run: npx wait-on http://localhost:6006 --timeout 30000
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - uses: boisenoise/backstop-deux@v0.2.0
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
