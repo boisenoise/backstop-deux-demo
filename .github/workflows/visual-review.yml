@@ -31,7 +31,7 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install chromium --with-deps
 
-      - uses: boisenoise/backstop-deux@v0.2.0
+      - uses: boisenoise/backstop-deux@v0.3.0
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

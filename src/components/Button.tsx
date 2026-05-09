@@ -10,8 +10,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary:   'bg-indigo-600 text-white hover:bg-indigo-700 border border-transparent',
-  secondary: 'bg-white text-indigo-600 hover:bg-indigo-50 border border-indigo-600',
+  primary:   'bg-rose-600 text-white hover:bg-rose-700 border border-transparent',
+  secondary: 'bg-white text-rose-600 hover:bg-rose-50 border border-rose-600',
   ghost:     'bg-transparent text-gray-600 hover:bg-gray-100 border border-transparent',
 }
 
@@ -36,7 +36,7 @@ export function Button({
       disabled={disabled || loading}
       className={[
         'inline-flex items-center justify-center font-medium rounded-md',
-        'transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
+        'transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2',
         'disabled:opacity-50 disabled:cursor-not-allowed',
         variantStyles[variant],
         sizeStyles[size],
